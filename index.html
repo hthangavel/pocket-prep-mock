@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Enrollment Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the Inter font and basic body setup */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        /* Hide all screens by default, JavaScript will show the active one */
+        .screen {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Main application container -->
+    <div id="app-container" class="min-h-screen">
+
+        <!-- 1. Authentication & Registration Screen -->
+        <div id="authScreen" class="screen flex flex-col items-center justify-center min-h-screen p-4">
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Welcome to CourseConnect</h2>
+                <p class="text-gray-600 mb-8">Sign in or create an account to start your learning journey.</p>
+
+                <div class="space-y-4 mb-8">
+                    <button class="w-full py-3 px-4 rounded-xl flex items-center justify-center space-x-2 border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors duration-200" onclick="setCurrentScreen('welcome')">
+                        <!-- Google Logo SVG -->
+                        <svg viewBox="0 0 24 24" class="h-5 w-5">
+                            <path fill="#4285F4" d="M22.000000,12.000000 C22.000000,11.520000 21.967000,11.040000 21.905000,10.560000 L12.000000,10.560000 L12.000000,14.475000 L17.505000,14.475000 C17.200000,16.030000 16.325000,17.435000 15.000000,18.330000 L15.000000,21.365000 L19.460000,21.365000 C21.845000,19.165000 23.275000,16.040000 23.275000,12.000000 L22.000000,12.000000 Z" />
+                            <path fill="#34A853" d="M12.000000,22.000000 C14.935000,22.000000 17.460000,21.055000 19.460000,19.435000 L15.000000,18.330000 C13.785000,19.160000 12.000000,19.780000 12.000000,19.780000 C9.110000,19.780000 6.640000,18.150000 5.660000,15.755000 L1.160000,15.755000 L1.160000,18.840000 C3.200000,20.800000 7.375000,22.000000 12.000000,22.000000 L12.000000,22.000000 Z" />
+                            <path fill="#FBBC05" d="M5.660000,15.755000 C5.195000,14.590000 4.960000,13.315000 4.960000,12.000000 C4.960000,10.685000 5.195000,9.410000 5.660000,8.245000 L5.660000,8.245000 L1.160000,5.160000 L1.160000,5.160000 C0.055000,7.395000 0.000000,9.660000 0.000000,12.000000 C0.000000,14.340000 0.055000,16.605000 1.160000,18.840000 L5.660000,15.755000 L5.660000,15.755000 Z" />
+                            <path fill="#EA4335" d="M12.000000,4.220000 C14.325000,4.220000 15.930000,5.180000 16.960000,6.130000 L20.155000,3.070000 C17.950000,1.100000 15.220000,0.000000 12.000000,0.000000 C7.375000,0.000000 3.200000,1.200000 1.160000,3.160000 L5.660000,6.245000 C6.640000,3.850000 9.110000,2.220000 12.000000,2.220000 L12.000000,2.220000 Z" />
+                        </svg>
+                        <span>Sign in with Google</span>
+                    </button>
+                    <button class="w-full py-3 px-4 rounded-xl flex items-center justify-center space-x-2 border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors duration-200" onclick="setCurrentScreen('welcome')">
+                        <!-- Facebook Logo SVG -->
+                        <svg viewBox="0 0 24 24" class="h-5 w-5">
+                            <path fill="#1877F2" d="M12 2.04C6.51 2.04 2.04 6.51 2.04 12c0 5.09 3.73 9.3 8.57 9.91v-7.14H8.08v-2.77h2.53v-2.09c0-2.5 1.5-3.87 3.76-3.87 1.08 0 2.02.19 2.29.27v2.53h-1.49c-1.22 0-1.46.58-1.46 1.43v1.86h2.77l-.46 2.77h-2.31v7.14C19.96 21.34 22 17.12 22 12c0-5.49-4.47-9.96-9.96-9.96z"/>
+                        </svg>
+                        <span>Sign in with Facebook</span>
+                    </button>
+                    <button class="w-full py-3 px-4 rounded-xl flex items-center justify-center space-x-2 border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors duration-200" onclick="setCurrentScreen('welcome')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1667px-Apple_logo_black.svg.png" alt="Apple" class="h-5 w-5" />
+                        <span>Sign in with Apple</span>
+                    </button>
+                    <button class="w-full py-3 px-4 rounded-xl flex items-center justify-center space-x-2 border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors duration-200" onclick="setCurrentScreen('welcome')">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png" alt="Instagram" class="h-5 w-5" />
+                        <span>Sign in with Instagram</span>
+                    </button>
+                </div>
+
+                <p class="text-gray-500 text-sm">
+                    By signing in, you agree to our <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>. We only access basic profile information.
+                </p>
+            </div>
+        </div>
+
+        <!-- 1.1 Welcome Flow (First-Time User Experience) -->
+        <div id="welcomeScreen" class="screen flex flex-col items-center justify-center min-h-screen p-4">
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+                <h2 class="text-3xl font-bold text-blue-600 mb-6">Hello There!</h2>
+                <p class="text-gray-700 mb-4 text-lg">
+                    Welcome to the platform designed to help you discover and enroll in amazing courses.
+                </p>
+                <p class="text-gray-600 mb-8">
+                    Explore a world of knowledge, track your progress, and connect with expert instructors.
+                </p>
+                <button class="w-full bg-blue-600 text-white py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="setCurrentScreen('profile')">
+                    Get Started
+                </button>
+            </div>
+        </div>
+
+        <!-- 1.2 Profile Completion Screen -->
+        <div id="profileScreen" class="screen flex flex-col items-center justify-center min-h-screen p-4">
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Complete Your Profile</h2>
+                <p class="text-gray-600 mb-6 text-center">Just a few more details to get started.</p>
+
+                <form onsubmit="handleProfileSubmit(event)" class="space-y-5">
+                    <div>
+                        <label for="profileName" class="block text-gray-700 text-sm font-medium mb-2">Full Name</label>
+                        <input
+                            type="text"
+                            id="profileName"
+                            class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                            placeholder="John Doe"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="profileEmail" class="block text-gray-700 text-sm font-medium mb-2">Preferred Email</label>
+                        <input
+                            type="email"
+                            id="profileEmail"
+                            class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                            placeholder="your.email@example.com"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full bg-blue-600 text-white py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors duration-200 shadow-md"
+                    >
+                        Save Profile & Continue
+                    </button>
+                    <button
+                        type="button"
+                        class="w-full text-blue-600 py-3 px-4 rounded-xl hover:bg-blue-50 transition-colors duration-200"
+                        onclick="setCurrentScreen('courseSelection')"
+                    >
+                        Skip for now
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 2. Course Selection Interface -->
+        <div id="courseSelectionScreen" class="screen min-h-screen p-4 sm:p-6 lg:p-8">
+            <div class="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Discover Courses</h2>
+
+                <!-- Search and Filter (Simplified) -->
+                <div class="mb-6 flex flex-col sm:flex-row gap-4">
+                    <input
+                        type="text"
+                        placeholder="Search courses..."
+                        class="flex-grow p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                    />
+                    <select class="p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
+                        <option>All Subjects</option>
+                        <option>Technology</option>
+                        <option>Business</option>
+                        <option>Arts</option>
+                    </select>
+                </div>
+
+                <!-- Course Cards will be dynamically inserted here -->
+                <div id="courseCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-8">
+                    <!-- Course cards will be rendered by JavaScript -->
+                </div>
+
+                <!-- Selection Counter and Continue Button -->
+                <div class="flex flex-col sm:flex-row items-center justify-between mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
+                    <p id="selectedCoursesCount" class="text-blue-800 font-medium mb-3 sm:mb-0">
+                        0 courses selected (Recommended: 2-3)
+                    </p>
+                    <button
+                        id="continueToScheduleBtn"
+                        class="py-3 px-6 rounded-xl text-white font-medium transition-colors duration-200 shadow-md bg-blue-300 cursor-not-allowed"
+                        onclick="setCurrentScreen('scheduleSelection')"
+                        disabled
+                    >
+                        Continue to Schedule
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Schedule Selection Calendar (Simplified) -->
+        <div id="scheduleSelectionScreen" class="screen min-h-screen p-4 sm:p-6 lg:p-8">
+            <div class="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Select Your Schedule</h2>
+                <p class="text-gray-600 mb-6 text-center">Choose the best dates and times for your selected courses.</p>
+
+                <div class="flex justify-between items-center mb-6">
+                    <button class="text-blue-600 hover:text-blue-800 font-bold text-2xl">&lt;</button>
+                    <h3 class="text-2xl font-semibold text-gray-800">July 2025</h3>
+                    <button class="text-blue-600 hover:text-blue-800 font-bold text-2xl">&gt;</button>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div id="calendarGrid" class="grid grid-cols-7 gap-2 text-center text-sm mb-6">
+                    <div class="font-semibold text-gray-500">Sun</div>
+                    <div class="font-semibold text-gray-500">Mon</div>
+                    <div class="font-semibold text-gray-500">Tue</div>
+                    <div class="font-semibold text-gray-500">Wed</div>
+                    <div class="font-semibold text-gray-500">Thu</div>
+                    <div class="font-semibold text-gray-500">Fri</div>
+                    <div class="font-semibold text-gray-500">Sat</div>
+                    <!-- Calendar days will be rendered by JavaScript -->
+                </div>
+
+                <div class="flex justify-center space-x-4 mb-8 text-sm">
+                    <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-green-500 mr-2"></span>Available</span>
+                    <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-orange-500 mr-2"></span>Limited</span>
+                    <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-gray-400 mr-2"></span>No Slots</span>
+                    <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span>Selected</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-end space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button
+                        class="bg-gray-200 text-gray-700 py-3 px-6 rounded-xl hover:bg-gray-300 transition-colors duration-200 shadow-sm"
+                        onclick="setCurrentScreen('courseSelection')"
+                    >
+                        Back to Courses
+                    </button>
+                    <button
+                        class="bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700 transition-colors duration-200 shadow-md"
+                        onclick="setCurrentScreen('registrationConfirmation')"
+                    >
+                        Confirm Schedule
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Class Registration Confirmation -->
+        <div id="registrationConfirmationScreen" class="screen flex flex-col items-center justify-center min-h-screen p-4">
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Confirm Your Class Registration</h2>
+
+                <div class="space-y-4 text-gray-700 mb-8">
+                    <p class="flex justify-between"><strong>Course:</strong> <span class="font-semibold text-blue-600" id="confirmCourseName"></span></p>
+                    <p class="flex justify-between"><strong>Instructor:</strong> <span id="confirmInstructor"></span></p>
+                    <p class="flex justify-between"><strong>Date:</strong> <span id="confirmDate"></span></p>
+                    <p class="flex justify-between"><strong>Time:</strong> <span id="confirmTime"></span></p>
+                    <p class="flex justify-between"><strong>Duration:</strong> <span id="confirmDuration"></span></p>
+                    <p class="flex justify-between"><strong>Format:</strong> <span id="confirmFormat"></span></p>
+                    <p class="flex justify-between"><strong>Prerequisites:</strong> <span id="confirmPrerequisites"></span></p>
+                    <p class="flex justify-between font-semibold" id="confirmSeatAvailabilityParent">
+                        <strong>Seats Remaining:</strong> <span id="confirmSeatAvailability"></span>
+                    </p>
+                </div>
+
+                <!-- Terms Agreement -->
+                <div class="flex items-start mb-8">
+                    <input
+                        type="checkbox"
+                        id="termsAgreed"
+                        class="form-checkbox h-5 w-5 text-blue-600 rounded mt-1 focus:ring-blue-500"
+                        onchange="handleTermsCheckboxChange()"
+                    />
+                    <label for="termsAgreed" class="ml-3 text-gray-700 text-sm">
+                        I agree to the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions</a> of this enrollment.
+                    </label>
+                </div>
+
+                <button
+                    id="joinClassBtn"
+                    class="w-full py-3 px-4 rounded-xl text-white font-medium transition-colors duration-200 shadow-md bg-blue-300 cursor-not-allowed"
+                    onclick="setCurrentScreen('assessmentIntro')"
+                    disabled
+                >
+                    Join This Class
+                </button>
+            </div>
+        </div>
+
+        <!-- 5. Eligibility Assessment Introduction -->
+        <div id="assessmentIntroScreen" class="screen flex flex-col items-center justify-center min-h-screen p-4">
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Eligibility Assessment</h2>
+                <p class="text-gray-600 mb-4">
+                    To confirm your readiness for the course, please complete a short assessment.
+                </p>
+                <ul class="list-disc list-inside text-left text-gray-700 space-y-2 mb-8">
+                    <li>This assessment has 10 questions.</li>
+                    <li>You have 30 minutes to complete it.</li>
+                    <li>You need 7 correct answers to proceed.</li>
+                </ul>
+                <p class="text-gray-600 mb-8">
+                    You can review optional study materials before you begin. Take your time, and start when you're ready!
+                </p>
+                <button
+                    class="w-full bg-blue-600 text-white py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors duration-200 shadow-md"
+                    onclick="setCurrentScreen('assessment')"
+                >
+                    Start Assessment
+                </button>
+            </div>
+        </div>
+
+        <!-- 5.1 Eligibility Assessment Experience -->
+        <div id="assessmentScreen" class="screen min-h-screen p-4 sm:p-6 lg:p-8 flex flex-col items-center">
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg w-full max-w-2xl">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Eligibility Assessment</h2>
+
+                <!-- Timer and Progress -->
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <div id="timeLeft" class="text-xl font-mono text-blue-600">
+                        Time Left: 00:00
+                    </div>
+                    <div id="questionProgress" class="text-gray-600">
+                        Question 0 of 0
+                    </div>
+                </div>
+
+                <!-- Question Area -->
+                <div class="mb-8">
+                    <p id="questionText" class="text-lg font-semibold text-gray-800 mb-4"></p>
+                    <div id="optionsContainer" class="space-y-3">
+                        <!-- Options will be rendered by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Navigation/Submission -->
+                <div class="flex justify-end">
+                    <button
+                        id="submitAssessmentBtn"
+                        class="bg-blue-600 text-white py-3 px-6 rounded-xl hover:bg-blue-700 transition-colors duration-200 shadow-md bg-blue-300 cursor-not-allowed"
+                        onclick="handleAssessmentSubmission()"
+                        disabled
+                    >
+                        Submit Assessment
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Results & Next Steps Screen -->
+        <div id="resultsScreen" class="screen flex flex-col items-center justify-center min-h-screen p-4">
+            <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
+                <div id="resultsIcon" class="text-green-600 text-5xl mb-6">
+                    <!-- SVG icon will be rendered by JavaScript -->
+                </div>
+                <h2 id="resultsTitle" class="text-3xl font-bold text-green-700 mb-4"></h2>
+                <p id="resultsMessage" class="text-gray-700 mb-6"></p>
+                <ul id="resultsList" class="list-disc list-inside text-left text-gray-600 space-y-2 mb-8">
+                    <!-- List items will be rendered by JavaScript -->
+                </ul>
+                <button
+                    class="w-full bg-blue-600 text-white py-3 px-4 rounded-xl hover:bg-blue-700 transition-colors duration-200 shadow-md"
+                    onclick="setCurrentScreen('courseSelection')"
+                >
+                    Go to Dashboard / Explore Courses
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Global State Variables ---
+        let currentScreen = 'auth'; // Default screen
+        let assessmentScore = 0;
+        let selectedCourses = []; // Stores IDs of selected courses
+        let termsAgreed = false;
+        let timeLeft = 30 * 60; // 30 minutes in seconds
+        let assessmentTimer = null;
+        let selectedAnswer = null; // For assessment screen
+
+        // Dummy data for courses (moved from React component)
+        const courses = [
+            { id: 1, name: 'Introduction to Web Development', description: 'Learn the basics of HTML, CSS, and JavaScript.', credits: 30, time: '5 hrs/week' },
+            { id: 2, name: 'Data Science with Python', description: 'Explore data analysis, machine learning, and visualization.', credits: 45, time: '8 hrs/week' },
+            { id: 3, name: 'Digital Marketing Fundamentals', description: 'Master SEO, social media, and content marketing strategies.', credits: 20, time: '4 hrs/week' },
+            { id: 4, name: 'Graphic Design Principles', description: 'Understand visual hierarchy, typography, and color theory.', credits: 25, time: '6 hrs/week' },
+        ];
+
+        // Dummy assessment questions (moved from React component)
+        const assessmentQuestions = [
+            {
+                id: 1,
+                question: "Which of the following is NOT a core component of web development?",
+                options: ["HTML", "CSS", "JavaScript", "SQL"],
+                correctAnswer: "SQL"
+            },
+            // Add more dummy questions here if desired for a more complete assessment
+        ];
+        let currentQuestionIndex = 0;
+
+        // Dummy class details for confirmation screen
+        const classDetails = {
+            courseName: 'Introduction to Web Development', // This could be dynamically set from selectedCourses
+            instructor: 'Dr. Jane Smith',
+            date: 'July 15, 2025',
+            time: '10:00 AM - 12:00 PM EST',
+            duration: '2 hours',
+            format: 'Online (Zoom link will be provided)',
+            prerequisites: 'None',
+            seatAvailability: '5 seats remaining',
+            urgency: true,
+        };
+
+        // --- Core Screen Navigation Logic ---
+        function setCurrentScreen(screenId) {
+            currentScreen = screenId;
+            renderScreen();
+        }
+
+        function renderScreen() {
+            // Hide all screens first
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+
+            // Show the active screen and call its specific render function
+            const activeScreenElement = document.getElementById(currentScreen + 'Screen');
+            if (activeScreenElement) {
+                activeScreenElement.style.display = 'flex'; // Use flex for centering if needed
+
+                // Call specific render/init functions for each screen
+                switch (currentScreen) {
+                    case 'auth':
+                        // Nothing specific needed here, buttons handle navigation
+                        break;
+                    case 'welcome':
+                        // Nothing specific needed here
+                        break;
+                    case 'profile':
+                        // Nothing specific needed here, form handled by its submit
+                        break;
+                    case 'courseSelection':
+                        renderCourseSelectionScreen();
+                        break;
+                    case 'scheduleSelection':
+                        renderScheduleSelectionScreen();
+                        break;
+                    case 'registrationConfirmation':
+                        renderRegistrationConfirmationScreen();
+                        break;
+                    case 'assessmentIntro':
+                        // Nothing specific needed here
+                        break;
+                    case 'assessment':
+                        startAssessment();
+                        break;
+                    case 'results':
+                        renderResultsScreen();
+                        break;
+                }
+            }
+        }
+
+        // --- Screen Specific Rendering and Logic ---
+
+        // Course Selection Screen
+        function renderCourseSelectionScreen() {
+            const container = document.getElementById('courseCardsContainer');
+            container.innerHTML = ''; // Clear previous cards
+
+            courses.forEach(course => {
+                const isSelected = selectedCourses.includes(course.id);
+                const card = `
+                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-5 flex flex-col">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-gray-800">${course.name}</h3>
+                            <input
+                                type="checkbox"
+                                id="course-${course.id}"
+                                ${isSelected ? 'checked' : ''}
+                                onchange="handleCourseToggle(${course.id})"
+                                class="form-checkbox h-6 w-6 text-blue-600 rounded focus:ring-blue-500"
+                            />
+                        </div>
+                        <p class="text-gray-600 text-sm mb-3">${course.description}</p>
+                        <div class="flex justify-between text-gray-700 text-sm mt-auto pt-2 border-t border-gray-100">
+                            <span>Credits: ${course.credits}</span>
+                            <span>Time: ${course.time}</span>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+            updateCourseSelectionUI();
+        }
+
+        function handleCourseToggle(courseId) {
+            const index = selectedCourses.indexOf(courseId);
+            if (index > -1) {
+                selectedCourses.splice(index, 1); // Remove if already selected
+            } else {
+                selectedCourses.push(courseId); // Add if not selected
+            }
+            updateCourseSelectionUI();
+        }
+
+        function updateCourseSelectionUI() {
+            const countElement = document.getElementById('selectedCoursesCount');
+            const continueBtn = document.getElementById('continueToScheduleBtn');
+
+            countElement.textContent = `${selectedCourses.length} courses selected (Recommended: 2-3)`;
+
+            if (selectedCourses.length > 0) {
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('bg-blue-300', 'cursor-not-allowed');
+                continueBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            } else {
+                continueBtn.disabled = true;
+                continueBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                continueBtn.classList.add('bg-blue-300', 'cursor-not-allowed');
+            }
+        }
+
+        // Profile Completion Screen
+        function handleProfileSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('profileName').value;
+            const email = document.getElementById('profileEmail').value;
+            console.log('Profile saved:', { name, email });
+            setCurrentScreen('courseSelection');
+        }
+
+        // Schedule Selection Screen
+        function renderScheduleSelectionScreen() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            // Clear previous days, but keep day headers
+            const existingDays = calendarGrid.querySelectorAll('.p-3.rounded-lg');
+            existingDays.forEach(day => day.remove());
+
+            // Placeholder for start of month (3 empty divs)
+            for (let i = 0; i < 3; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'p-3';
+                calendarGrid.appendChild(emptyDiv);
+            }
+
+            // Dummy data for available slots
+            const calendarDays = Array.from({ length: 30 }, (_, i) => ({
+                date: i + 1,
+                status: ['green', 'orange', 'gray', 'blue'][Math.floor(Math.random() * 4)], // Random status
+                hasSlots: Math.random() > 0.3 // Some days have slots
+            }));
+
+            calendarDays.forEach(day => {
+                const div = document.createElement('div');
+                div.className = `p-3 rounded-lg cursor-pointer transition-colors duration-150 ${
+                    day.status === 'green' ? 'bg-green-100 text-green-800 hover:bg-green-200' :
+                    day.status === 'orange' ? 'bg-orange-100 text-orange-800 hover:bg-orange-200' :
+                    day.status === 'blue' ? 'bg-blue-500 text-white shadow-md' :
+                    'bg-gray-100 text-gray-500 cursor-not-allowed'
+                }`;
+                div.textContent = day.date;
+                if (day.status === 'orange') {
+                    const span = document.createElement('span');
+                    span.className = 'block text-xs';
+                    span.textContent = 'Limited';
+                    div.appendChild(span);
+                }
+                if (day.status === 'blue') {
+                    const span = document.createElement('span');
+                    span.className = 'block text-xs';
+                    span.textContent = 'Selected';
+                    div.appendChild(span);
+                }
+                if (day.hasSlots) {
+                    div.onclick = () => console.log(`Clicked day ${day.date}`);
+                }
+                calendarGrid.appendChild(div);
+            });
+        }
+
+        // Registration Confirmation Screen
+        function renderRegistrationConfirmationScreen() {
+            document.getElementById('confirmCourseName').textContent = classDetails.courseName;
+            document.getElementById('confirmInstructor').textContent = classDetails.instructor;
+            document.getElementById('confirmDate').textContent = classDetails.date;
+            document.getElementById('confirmTime').textContent = classDetails.time;
+            document.getElementById('confirmDuration').textContent = classDetails.duration;
+            document.getElementById('confirmFormat').textContent = classDetails.format;
+            document.getElementById('confirmPrerequisites').textContent = classDetails.prerequisites;
+            document.getElementById('confirmSeatAvailability').textContent = classDetails.seatAvailability;
+
+            const seatAvailabilityParent = document.getElementById('confirmSeatAvailabilityParent');
+            if (classDetails.urgency) {
+                seatAvailabilityParent.classList.add('text-red-600');
+                seatAvailabilityParent.classList.remove('text-gray-700');
+            } else {
+                seatAvailabilityParent.classList.remove('text-red-600');
+                seatAvailabilityParent.classList.add('text-gray-700');
+            }
+
+            // Reset terms agreement checkbox and button state
+            document.getElementById('termsAgreed').checked = false;
+            termsAgreed = false;
+            handleTermsCheckboxChange(); // Update button state
+        }
+
+        function handleTermsCheckboxChange() {
+            const checkbox = document.getElementById('termsAgreed');
+            const joinBtn = document.getElementById('joinClassBtn');
+            termsAgreed = checkbox.checked;
+
+            if (termsAgreed) {
+                joinBtn.disabled = false;
+                joinBtn.classList.remove('bg-blue-300', 'cursor-not-allowed');
+                joinBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            } else {
+                joinBtn.disabled = true;
+                joinBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                joinBtn.classList.add('bg-blue-300', 'cursor-not-allowed');
+            }
+        }
+
+        // Assessment Screen
+        function startAssessment() {
+            currentQuestionIndex = 0; // Reset for demo
+            timeLeft = 30 * 60; // Reset timer for demo
+            selectedAnswer = null; // Reset selected answer
+
+            renderAssessmentQuestion();
+            clearInterval(assessmentTimer); // Clear any existing timer
+            assessmentTimer = setInterval(updateAssessmentTimer, 1000);
+            updateAssessmentUI();
+        }
+
+        function updateAssessmentTimer() {
+            timeLeft--;
+            if (timeLeft <= 0) {
+                clearInterval(assessmentTimer);
+                handleAssessmentSubmission(true); // Timed out submission
+            }
+            updateAssessmentUI();
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        function renderAssessmentQuestion() {
+            const question = assessmentQuestions[currentQuestionIndex];
+            document.getElementById('questionText').textContent = question.question;
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = ''; // Clear previous options
+
+            question.options.forEach((option, index) => {
+                const label = document.createElement('label');
+                label.className = "flex items-center p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors duration-150";
+                label.innerHTML = `
+                    <input
+                        type="radio"
+                        name="question-options"
+                        value="${option}"
+                        onchange="handleAnswerSelect('${option}')"
+                        class="form-radio h-5 w-5 text-blue-600 focus:ring-blue-500"
+                        ${selectedAnswer === option ? 'checked' : ''}
+                    />
+                    <span class="ml-3 text-gray-800">${option}</span>
+                `;
+                optionsContainer.appendChild(label);
+            });
+            updateAssessmentUI();
+        }
+
+        function handleAnswerSelect(option) {
+            selectedAnswer = option;
+            updateAssessmentUI();
+        }
+
+        function updateAssessmentUI() {
+            document.getElementById('timeLeft').textContent = `Time Left: ${formatTime(timeLeft)}`;
+            if (timeLeft < 60) {
+                document.getElementById('timeLeft').classList.add('text-red-600');
+                document.getElementById('timeLeft').classList.remove('text-blue-600');
+            } else {
+                document.getElementById('timeLeft').classList.remove('text-red-600');
+                document.getElementById('timeLeft').classList.add('text-blue-600');
+            }
+
+            document.getElementById('questionProgress').textContent = `Question ${currentQuestionIndex + 1} of ${assessmentQuestions.length}`;
+
+            const submitBtn = document.getElementById('submitAssessmentBtn');
+            if (selectedAnswer !== null) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('bg-blue-300', 'cursor-not-allowed');
+                submitBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                submitBtn.classList.add('bg-blue-300', 'cursor-not-allowed');
+            }
+        }
+
+        function handleAssessmentSubmission(timedOut = false) {
+            clearInterval(assessmentTimer); // Stop the timer
+
+            let score = 0;
+            if (selectedAnswer === assessmentQuestions[0].correctAnswer) {
+                score = 1; // Assuming 1 point for the correct answer
+            }
+            assessmentScore = score; // Update global score
+
+            setCurrentScreen('results');
+        }
+
+        // Results Screen
+        function renderResultsScreen() {
+            const passed = assessmentScore >= 1; // Assuming a score of 1 means passing for this single-question demo
+            const resultsIcon = document.getElementById('resultsIcon');
+            const resultsTitle = document.getElementById('resultsTitle');
+            const resultsMessage = document.getElementById('resultsMessage');
+            const resultsList = document.getElementById('resultsList');
+            resultsList.innerHTML = ''; // Clear previous list items
+
+            if (passed) {
+                resultsIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                `;
+                resultsIcon.classList.add('text-green-600');
+                resultsIcon.classList.remove('text-red-600');
+
+                resultsTitle.textContent = "Congratulations!";
+                resultsTitle.classList.add('text-green-700');
+                resultsTitle.classList.remove('text-red-700');
+
+                resultsMessage.textContent = "You've successfully passed the eligibility assessment. You're enrolled in your selected course!";
+                resultsList.innerHTML = `
+                    <li>A calendar invitation has been sent to your email.</li>
+                    <li>Access preparation materials from your dashboard.</li>
+                    <li>Reminder notifications are set up for your class.</li>
+                `;
+            } else {
+                resultsIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                `;
+                resultsIcon.classList.add('text-red-600');
+                resultsIcon.classList.remove('text-green-600');
+
+                resultsTitle.textContent = "Almost There!";
+                resultsTitle.classList.add('text-red-700');
+                resultsTitle.classList.remove('text-green-700');
+
+                resultsMessage.textContent = "You didn't quite meet the passing score this time. We recommend some additional preparation.";
+                resultsList.innerHTML = `
+                    <li>Review recommended study materials.</li>
+                    <li>You can retake the assessment after a 24-hour waiting period.</li>
+                    <li>We've saved this class for easy access when you're ready to retry.</li>
+                `;
+            }
+        }
+
+        // --- Initialize the application on window load ---
+        window.onload = function() {
+            renderScreen(); // Start by rendering the initial screen
+        };
+    </script>
+</body>
+</html>
